@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瓦片地图的创建</title>
+    <script src="js/phaser.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    var game = new Phaser.Game(600, 600, Phaser.AUTO, "container", state);
+    function state() {
+        this.init = function () {
+            game.scale.pageAlignHorizontally = true;
+            game.scale.pageAlignVertically = true;
+
+        };
+        this.preload = function () {
+            game.load.tilemap("map","assets/world.json",null,Phaser.Tilemap.TILED_JSON);
+            game.load.image("map_image","assets/mario.png");
+        };
+        this.create = function () {
+            var map = game.add.tilemap('map');
+            map.addTilesetImage('mario',"map_image");
+            var layer = map.createLayer("world");
+            layer.resize();//调整世界大小为地图大小
+            //以瓦片为单位
+            var tile = map.getTile(0,40);
+
+            //map.putTile(tile,0,0);
+//
+           // map.fill(12,0,0,20,20);
+//
+            /*var tiles = map.copy(0,19,5,5);
+            map.paste(0,0,tiles);*/
+//
+           // map.replace(1,12,0,0,10,10);
+            tilemap.setCollision()
+
+        };
+        this.update = function () {
+
+
+        };
+        this.render = function () {
+
+        };
+    }
+    game.state.add("state", state);
+    game.state.start("state");
+</script>
+</body>
+</html>
