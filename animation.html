@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/phaser.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    var game = new Phaser.Game(700, 400, Phaser.AUTO, "container", state);
+    function state() {
+        var layer, player, cursors;
+        this.init = function () {
+            game.scale.pageAlignHorizontally = true;
+            game.scale.pageAlignVertically = true;
+
+        };
+        this.preload = function () {
+            game.load.tilemap("mario_map","assets/buy.json",null,Phaser.Tilemap.TILED_JSON);
+            game.load.image("mario","assets/mario.png");
+            game.load.image('player', 'assets/player.png');
+        };
+        this.create = function () {
+            var map = game.add.tilemap('mario_map');
+            map.addTilesetImage('mario',"mario");
+            layer = map.createLayer("world");
+            layer.resizeWorld();//调整世界大小为地图大小
+
+            player = game.add.sprite(32, 32, 'player');
+        };
+        this.update = function () {
+            var keys = game.input.activePointer.leftButton;
+            if (keys.isDown) player.x += 1;
+
+
+        };
+        this.render = function () {
+
+        };
+    }
+    game.state.add("state", state);
+    game.state.start("state");
+</script>
+</body>
+</html>
