@@ -28,14 +28,19 @@
             layer.resizeWorld();//调整世界大小为地图大小
 
             player = game.add.sprite(32, 32, 'player');
+
+            game.input.addPointer();
+
         };
         this.update = function () {
-            var keys = game.input.activePointer.leftButton;
-            if (keys.isDown) player.x += 1;
+           /* var keys = game.input.activePointer.leftButton;
+            if (keys.isDown) player.x += 1;*/
 
 
         };
         this.render = function () {
+            game.debug.pointer(game.input.mousePointer);
+
 
         };
     }
