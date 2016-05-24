@@ -29,17 +29,20 @@
 
             player = game.add.sprite(32, 32, 'player');
 
-            game.input.addPointer();
+
 
         };
         this.update = function () {
-           /* var keys = game.input.activePointer.leftButton;
-            if (keys.isDown) player.x += 1;*/
+           var keys = game.input.activePointer;
+            if (keys.isDown) {
+                player.x = keys.x;
+                player.y = keys.y;
+            }
 
 
         };
         this.render = function () {
-            game.debug.pointer(game.input.mousePointer);
+
 
 
         };
