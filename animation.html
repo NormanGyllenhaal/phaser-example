@@ -10,7 +10,7 @@
 <script>
     var game = new Phaser.Game(700, 400, Phaser.AUTO, "container", state);
     function state() {
-        var layer, player, cursors;
+        var layer, player, cursors,key;
         this.init = function () {
             game.scale.pageAlignHorizontally = true;
             game.scale.pageAlignVertically = true;
@@ -28,16 +28,23 @@
             layer.resizeWorld();//调整世界大小为地图大小
 
             player = game.add.sprite(32, 32, 'player');
+            game.physics.startSystem(Phaser.Physics.ARCADE);
 
+            player .anchor.setTo(0.5, 0.5);
+            game.physics.enable(player, Phaser.Physics.ARCADE);
+            player.body.allowRotation = false;
 
+            key = game.input.activePointer;
 
         };
+
         this.update = function () {
-           var keys = game.input.activePointer;
-            if (keys.isDown) {
-                player.x = keys.x;
-                player.y = keys.y;
-            }
+            /*if (key.isDown)
+            {
+
+
+            }*/
+            player.rotation = game.physics.arcade.moveToPointer(player, 60, key, 1000);
 
 
         };
