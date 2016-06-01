@@ -32,19 +32,17 @@
 
             player .anchor.setTo(0.5, 0.5);
             game.physics.enable(player, Phaser.Physics.ARCADE);
-            player.body.allowRotation = false;
+            player.body.allowRotation = true;
 
             key = game.input.activePointer;
 
         };
 
         this.update = function () {
-            /*if (key.isDown)
+            if (key.isDown)
             {
-
-
-            }*/
-            player.rotation = game.physics.arcade.moveToPointer(player, 60, key, 1000);
+                player.rotation = game.physics.arcade.moveToPointer(player, 0, key, 1000);
+            }
 
 
         };
